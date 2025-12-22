@@ -2,7 +2,7 @@
 
 ---
 
-## To Do ✅
+## To Do List:
 
 ### Step 2: Container Registry
 - [ ] Set up a container registry in Azure.
@@ -18,7 +18,7 @@
 
 ---
 
-## Completed ✅
+## Completed:
 
 ### Step 1: Containerisation
 - [x] Packaged the application into a container.
