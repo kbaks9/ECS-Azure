@@ -6,7 +6,7 @@
 #  admin_enabled       = false
 #}
 
-/* # Taken from Terraform HashiCorp site
+/* # Taken from Terraform documentation site
 resource "azurerm_resource_group" "example" {
   name     = "example-resources"
   location = "West Europe"
