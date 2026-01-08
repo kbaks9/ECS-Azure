@@ -16,5 +16,5 @@ variable "location" {
 variable "name_acr" {
   type        = string
   description = "Name of the ACR"
-  default     = "cn-taskmanager"
+  default     = "cntaskmanager"
 }
