@@ -27,7 +27,9 @@ resource "azurerm_resource_group" "resource_group" {
 # }
 
 module "az_container_registry" {
-  source = "./modules/az_container_registry"
+  source         = "./modules/az_container_registry"
+  resource_group = var.resource_group
+  location       = var.location
 }
 
 ## Need to create more modules
