@@ -6,3 +6,4 @@ variable "container_name" { type = string }
 variable "image" { type = string }
 variable "cpu" { type = number }
 variable "memory" { type = string }
+variable "acr_login_server" { type = string }
