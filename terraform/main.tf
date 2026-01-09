@@ -34,6 +34,10 @@ module "az_container_app" {
   image          = "${module.az_container_registry.acr_login_server}/tm-app:latest"
   cpu            = 0.25
   memory         = "0.5Gi"
+
+  depends_on = [
+    azurerm_resource_group.resource_group
+  ]
 }
 
 module "role_assignment" {
