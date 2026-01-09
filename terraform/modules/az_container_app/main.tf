@@ -23,6 +23,12 @@ resource "azurerm_container_app" "app" {
     }
   }
 
+  # Add this registry configuration
+  registry {
+    server   = var.acr_login_server
+    identity = "system"
+  }
+
   ingress {
     external_enabled = true
     target_port      = 8080
