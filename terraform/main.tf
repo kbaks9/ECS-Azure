@@ -25,15 +25,16 @@ module "az_container_registry" {
 }
 
 module "az_container_app" {
-  source         = "./modules/az_container_app"
-  app_name       = "taskmanageracr"
-  env_name       = "tm-env"
-  resource_group = var.resource_group
-  location       = var.location
-  container_name = "tm-app"
-  image          = "${module.az_container_registry.acr_login_server}/tm-app:latest"
-  cpu            = 0.25
-  memory         = "0.5Gi"
+  source           = "./modules/az_container_app"
+  app_name         = "taskmanageracr"
+  env_name         = "tm-env"
+  resource_group   = var.resource_group
+  location         = var.location
+  container_name   = "tm-app"
+  image            = "${module.az_container_registry.acr_login_server}/tm-app:latest"
+  acr_login_server = module.az_container_registry.acr_login_server
+  cpu              = 0.25
+  memory           = "0.5Gi"
 
   depends_on = [
     azurerm_resource_group.resource_group
