@@ -4,16 +4,9 @@
 
 ## To Do List:
 
-### Step 2: Container Registry
-- [ ] Set up a container registry in Azure.
-- [ ] Push the container image to the registry.
-- [ ] Confirm the image can be pulled successfully.
-
-### Step 3: CI Pipeline
-- [ ] Automate container builds and pushes on code commits.
-- [ ] Integrate with Azure DevOps or GitHub Actions.
-- [ ] Ensure that every commit results in a new image in the registry.
-
+### Step 4: Restructuring
+- [X] Restructuring Terraform architect
+- [X] Remove hardcoded values
 > Note: Updates for these steps will be added soon.
 
 ---
@@ -21,5 +14,17 @@
 ## Completed:
 
 ### Step 1: Containerisation
-- [x] Packaged the application into a container.
-- [x] Validated that the application works locally inside the container.
+- [X] Packaged the application (tm-app) into a Docker container.
+- [X] Validated that the application works locally inside the container.
+
+### Step 2: Container Registry
+- [X] Set up an Azure Container Registry (cntaskmanager).
+- [X] Tagged the Docker image for ACR.
+- [X] Pushed the container image to the registry.
+- [X] Confirmed the image exists in ACR and can be pulled.
+
+### Step 3: Container App Deployment
+- [X] Created the Container App Environment.
+- [X] Deployed the Container App using the image from ACR.
+- [X] Configured system-assigned managed identity for the Container App.
+- [X] Enabled ACR authentication using managed identity (AcrPull).
