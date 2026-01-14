@@ -7,3 +7,7 @@ variable "image" { type = string }
 variable "cpu" { type = number }
 variable "memory" { type = string }
 variable "acr_login_server" { type = string }
+variable "acr_id" {
+  description = "The full resource ID of the Azure Container Registry"
+  type        = string
+}
