@@ -34,10 +34,11 @@ resource "azurerm_container_app" "app" {
 
   template {
     container {
-      name   = var.container_name
-      image  = var.image
-      cpu    = var.cpu
-      memory = var.memory
+      name  = var.container_name
+      image = "${var.acr_login_server}/${var.container_name}:${var.image_tag}"
+      #"${module.az_container_registry.acr_login_server}/${container_name}:${tag}latest"
+      cpu    = 0.25
+      memory = "0.5Gi"
     }
   }
 
