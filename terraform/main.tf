@@ -13,39 +13,37 @@ provider "azurerm" {
 
 # Creating resource group
 resource "azurerm_resource_group" "resource_group" {
-  name     = var.resource_group
-  location = var.location
+  name     = local.resource_group
+  location = local.location
 }
 
 module "az_container_registry" {
   source         = "./modules/az_container_registry"
   name           = "cntaskmanager"
-  resource_group = var.resource_group
-  location       = var.location
+  resource_group = local.resource_group
+  location       = local.location
 }
 
 module "az_container_app" {
   source           = "./modules/az_container_app"
-  app_name         = "taskmanageracr"
-  env_name         = "tm-env"
-  resource_group   = var.resource_group
-  location         = var.location
+  app_name         = local.app_name
+  env_name         = local.env_name
+  resource_group   = local.resource_group
+  location         = local.location
   acr_id           = module.az_container_registry.acr_id
-  container_name   = "tm-app"
-  image            = "${module.az_container_registry.acr_login_server}/tm-app:latest"
+  container_name   = local.container_name
   acr_login_server = module.az_container_registry.acr_login_server
-  cpu              = 0.25
-  memory           = "0.5Gi"
-
-  depends_on = [
-    azurerm_resource_group.resource_group
-  ]
+  image_tag        = local.image_tag
 }
 
 # module "network" {
 #   source = "./modules/network"
 # }
 
-# module "front_door" {
-# source = "./modules/front_door"
-# }
+module "front_door" {
+  source             = "./modules/front_door"
+  resource_group     = local.resource_group
+  origin_host_name   = module.az_container_app.fqdn
+  custom_name        = "kbakar-site"
+  custom_domain_name = "kbakar.site"
+}
