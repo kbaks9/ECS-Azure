@@ -5,3 +5,8 @@ output "principal_id" {
 output "app_id" {
   value = azurerm_container_app.app.id
 }
+
+output "fqdn" {
+  description = "Container App FQDN"
+  value       = azurerm_container_app.app.ingress[0].fqdn
+}

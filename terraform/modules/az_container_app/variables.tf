@@ -28,16 +28,6 @@ variable "image_tag" {
   type        = string
 }
 
-# variable "cpu" {
-#   description = "CPU cores allocated to the container"
-#   type        = number
-# }
-
-# variable "memory" {
-#   description = "Memory allocated to the container (e.g. 0.5Gi)"
-#   type        = string
-# }
-
 variable "acr_login_server" {
   description = "ACR login server URL"
   type        = string
