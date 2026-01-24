@@ -1,19 +1,19 @@
 # Front Door Profile
 resource "azurerm_cdn_frontdoor_profile" "fd_profile" {
-  name                = local.profile_name
+  name                = var.profile_name
   resource_group_name = var.resource_group
-  sku_name            = local.sku_name
+  sku_name            = var.sku_name
 }
 
 # Front Door Endpoint
 resource "azurerm_cdn_frontdoor_endpoint" "fd_endpoint" {
-  name                     = local.ep_name
+  name                     = var.ep_name
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd_profile.id
 }
 
 # Origin Group
 resource "azurerm_cdn_frontdoor_origin_group" "fd_origin_group" {
-  name                     = local.fd_group_name
+  name                     = var.fd_group_name
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd_profile.id
 
   health_probe {
@@ -31,7 +31,7 @@ resource "azurerm_cdn_frontdoor_origin_group" "fd_origin_group" {
 
 # Origin
 resource "azurerm_cdn_frontdoor_origin" "fd_origin" {
-  name                           = local.fd_origin_name
+  name                           = var.fd_origin_name
   cdn_frontdoor_origin_group_id  = azurerm_cdn_frontdoor_origin_group.fd_origin_group.id
   enabled                        = true
   certificate_name_check_enabled = true
@@ -46,7 +46,7 @@ resource "azurerm_cdn_frontdoor_origin" "fd_origin" {
 
 # Route
 resource "azurerm_cdn_frontdoor_route" "fd_route" {
-  name                          = local.fd_route_name
+  name                          = var.fd_route_name
   cdn_frontdoor_endpoint_id     = azurerm_cdn_frontdoor_endpoint.fd_endpoint.id
   cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.fd_origin_group.id
   cdn_frontdoor_origin_ids      = [azurerm_cdn_frontdoor_origin.fd_origin.id]
