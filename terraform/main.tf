@@ -13,37 +13,39 @@ provider "azurerm" {
 
 # Creating resource group
 resource "azurerm_resource_group" "resource_group" {
-  name     = local.resource_group
-  location = local.location
+  name     = var.resource_group
+  location = var.location
 }
 
 module "az_container_registry" {
   source         = "./modules/az_container_registry"
   name           = "cntaskmanager"
-  resource_group = local.resource_group
-  location       = local.location
+  resource_group = var.resource_group
+  location       = var.location
 }
 
 module "az_container_app" {
   source           = "./modules/az_container_app"
-  app_name         = local.app_name
-  env_name         = local.env_name
-  resource_group   = local.resource_group
-  location         = local.location
+  app_name         = var.app_name
+  env_name         = var.env_name
+  resource_group   = var.resource_group
+  location         = var.location
   acr_id           = module.az_container_registry.acr_id
-  container_name   = local.container_name
+  container_name   = var.container_name
   acr_login_server = module.az_container_registry.acr_login_server
-  image_tag        = local.image_tag
+  image_tag        = var.image_tag
 }
-
-# module "network" {
-#   source = "./modules/network"
-# }
 
 module "front_door" {
   source             = "./modules/front_door"
-  resource_group     = local.resource_group
+  resource_group     = var.resource_group
+  profile_name       = var.profile_name
+  sku_name           = var.sku_name
+  ep_name            = var.ep_name
+  fd_group_name      = var.fd_group_name
+  fd_origin_name     = var.fd_origin_name
+  fd_route_name      = var.fd_route_name
   origin_host_name   = module.az_container_app.fqdn
-  custom_name        = "kbakar-site"
-  custom_domain_name = "kbakar.site"
+  custom_name        = var.custom_name
+  custom_domain_name = var.custom_domain_name
 }
