@@ -33,7 +33,7 @@ variable "acr_login_server" {
   type        = string
 }
 
-variable "acr_id" {
-  description = "The full resource ID of the Azure Container Registry"
+variable "identity_id" {
+  description = "Identity ID"
   type        = string
 }
