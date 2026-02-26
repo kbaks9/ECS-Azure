@@ -4,18 +4,6 @@ resource "azurerm_container_app_environment" "app_env" {
   resource_group_name = var.resource_group
 }
 
-resource "azurerm_user_assigned_identity" "container_app" {
-  name                = "${var.app_name}-identity"
-  location            = var.location
-  resource_group_name = var.resource_group
-}
-
-resource "azurerm_role_assignment" "acr_pull" {
-  principal_id         = azurerm_user_assigned_identity.container_app.principal_id
-  role_definition_name = "AcrPull"
-  scope                = var.acr_id
-}
-
 resource "azurerm_container_app" "app" {
   name                         = var.app_name
   container_app_environment_id = azurerm_container_app_environment.app_env.id
@@ -24,12 +12,12 @@ resource "azurerm_container_app" "app" {
 
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.container_app.id]
+    identity_ids = [var.identity_id]
   }
 
   registry {
     server   = var.acr_login_server
-    identity = azurerm_user_assigned_identity.container_app.id
+    identity = var.identity_id
   }
 
   template {
@@ -50,5 +38,5 @@ resource "azurerm_container_app" "app" {
     }
   }
 
-  depends_on = [azurerm_role_assignment.acr_pull]
+  #  depends_on = [azurerm_role_assignment.acr_pull]
 }
