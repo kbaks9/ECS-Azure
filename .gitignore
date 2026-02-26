@@ -13,7 +13,7 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 terraform.tfvars
-.txt
+*.txt
 
 # Lock info
 .terraform.tfstate.lock.info
