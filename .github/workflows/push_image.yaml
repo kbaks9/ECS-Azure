@@ -1,0 +1,43 @@
+name: Build and push Docker Image to ACR
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'app/**' # will trigger only when app code changes, not terraform
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: Checkout code
+       uses: actions/checkout@v4
+
+     - name: Login to Azure
+       uses: azure/login@v1
+       with:
+         creds: |
+          { 
+            "clientId": "${{ secrets.AZURE_CLIENT_ID }}",
+            "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}",
+            "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
+            "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
+          }
+
+     - name: Login to ACR
+       run: az acr login --name cntaskmanager 
+
+     - name: Build and push Docker image
+       run: |
+          docker build -t cntaskmanager.azurecr.io/tm-app:${{ github.sha }} -f Dockerfile .
+          docker push cntaskmanager.azurecr.io/tm-app:${{ github.sha }}
+
+     - name: Update Container app with new image
+       run: |
+          az containerapp update \
+            --name taskmanageracr \
+            --resource-group rg-taskmanager \
+            --image cntaskmanager.azurecr.io/tm-app:${{ github.sha }}
