@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'app/**' # will trigger only when app code changes, not terraform
+      - 'app/**'     # will trigger either when app code changes,
+      - 'Dockerfile' # or when dockerfile changes
 
 
 jobs:
