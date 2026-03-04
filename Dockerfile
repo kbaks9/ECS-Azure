@@ -31,4 +31,4 @@ ENV PATH="/opt/venv/bin:$PATH"
 USER appuser
 
 EXPOSE 8080
-CMD ["python", "app/app.py"]
+CMD ["python", "app/app.py"]# updated
