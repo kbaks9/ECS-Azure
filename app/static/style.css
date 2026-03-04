@@ -66,6 +66,16 @@ header h1 {
   color: #eef0f7;
 }
 
+.brand-subtitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2dd4bf;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+  text-shadow: 0 0 12px rgba(45, 212, 191, 0.5);
+}
+
 .date {
   font-size: 0.8rem;
   color: rgba(238, 240, 247, 0.35);
