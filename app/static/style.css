@@ -179,13 +179,31 @@ header h1 {
 }
 .btn-delete:hover { background: rgba(248, 113, 113, 0.18); }
 
-/* struck through when task is done */
+/* completed task — faded card with green left border */
+.task.completed {
+  background: rgba(74, 222, 128, 0.04);
+  border-color: rgba(74, 222, 128, 0.20);
+  border-left: 3px solid #4ade80;
+  opacity: 0.65;
+}
+
 .task.completed h3 {
   text-decoration: line-through;
-  color: rgba(238, 240, 247, 0.30);
+  color: rgba(238, 240, 247, 0.40);
 }
+
 .task.completed p {
-  color: rgba(238, 240, 247, 0.30);
+  color: rgba(238, 240, 247, 0.25);
+}
+
+/* swap complete button to muted when already done */
+.task.completed .btn-complete {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.10);
+  color: rgba(238, 240, 247, 0.35);
+}
+.task.completed .btn-complete:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ── Add task form panel ──────────────────────── */
@@ -252,4 +270,11 @@ header h1 {
 #add-task-form button:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+/* ── Mobile ───────────────────────────────────── */
+@media (max-width: 720px) {
+  header { padding: 16px 20px; }
+  #main-content { flex-direction: column; padding: 20px 16px 40px; }
+  #new-task-form { flex: 1; width: 100%; position: static; }
 }
