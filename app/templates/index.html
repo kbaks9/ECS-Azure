@@ -2,29 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Task Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kamaal's Task Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+
   <header>
-    <h1>Kamaal's Task Manager</h1>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="avatar">KB</div>
+        <div>
+          <p class="brand-greeting">Good day,</p>
+          <h1>Kamaal Bakar</h1>
+        </div>
+      </div>
+      <span class="date" id="current-date"></span>
+    </div>
   </header>
 
   <div id="main-content">
+
     <div id="task-container">
-      <!-- Task list will be loaded here by script.js -->
+      <div class="section-title">
+        Tasks <span class="task-badge" id="task-count">0</span>
+      </div>
+      <!-- Tasks loaded by script.js -->
     </div>
 
     <div id="new-task-form">
-      <h2>Add New Task</h2>
+      <p class="form-label">New Task</p>
       <form id="add-task-form">
-        <input type="text" id="task-title" placeholder="Task title" required>
-        <input type="text" id="task-description" placeholder="Task description">
+        <input type="text" id="task-title" placeholder="What needs doing?" required>
+        <input type="text" id="task-description" placeholder="Any details? (optional)">
         <button type="submit">Add Task</button>
       </form>
     </div>
+
   </div>
 
+  <script>
+    const d = new Date();
+    document.getElementById('current-date').textContent =
+      d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+  </script>
   <script src="/static/script.js"></script>
 </body>
 </html>
