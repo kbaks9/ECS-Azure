@@ -69,7 +69,8 @@ jobs:
         run: |
           terraform apply -auto-approve \
             -target=azurerm_resource_group.resource_group \
-            -target=module.az_container_registry
+            -target=module.az_container_registry \
+            -target=module.role_assignment
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
