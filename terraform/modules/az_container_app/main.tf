@@ -37,6 +37,4 @@ resource "azurerm_container_app" "app" {
       percentage      = 100
     }
   }
-
-  #  depends_on = [azurerm_role_assignment.acr_pull]
 }
