@@ -1,24 +1,8 @@
-terraform {
-  required_version = ">= 1.12.2"
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">= 3.117.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_resource_group" "resource_group" {
   name     = var.resource_group
   location = var.location
 }
 
-# Stage 1 (initial run) 
-# infrastructure ready if I need to use private link to hide the application URL
 module "network" {
   source                        = "./modules/network"
   resource_group                = azurerm_resource_group.resource_group.name
@@ -36,7 +20,6 @@ module "az_container_registry" {
   location       = var.location
 }
 
-# Stage 2 (commented out to push docker image)
 module "az_container_app" {
   source           = "./modules/az_container_app"
   app_name         = var.app_name
@@ -70,5 +53,3 @@ module "front_door" {
   custom_name        = var.custom_name
   custom_domain_name = var.custom_domain_name
 }
-
-# test
