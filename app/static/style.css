@@ -91,20 +91,6 @@ header h1 {
   align-items: flex-start;
 }
 
-/* ── Hero title ───────────────────────────────── */
-.hero {
-  text-align: center;
-  padding: 36px 24px 0;
-}
-
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #2dd4bf;
-  text-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
-  letter-spacing: 0.03em;
-}
-
 /* ── Task list section ────────────────────────── */
 #task-container {
   flex: 1;
