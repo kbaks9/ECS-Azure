@@ -17,6 +17,9 @@ RUN python -m venv /opt/venv && \
 FROM python:3.12-alpine
 WORKDIR /app
 
+# Upgrade all packages to patch known vulnerabilities
+RUN apk upgrade --no-cache
+
 # Create non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
