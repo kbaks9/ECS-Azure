@@ -21,3 +21,4 @@ provider "azurerm" {
 }
 
 # trigger
+# tflint test
