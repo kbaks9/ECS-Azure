@@ -19,6 +19,3 @@ terraform {
 provider "azurerm" {
   features {}
 }
-
-# trigger
-# tflint test
