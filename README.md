@@ -1,12 +1,12 @@
 # taskflow-azure
 
-A task management application deployed on Azure using Terraform and GitHub Actions. The app runs in a Docker container served via Azure Container Apps, with Azure Front Door handling HTTPS and custom domain routing.
+This project is a cloud-native Task Management Application built to demonstrate and strengthen my understanding of modern cloud engineering practices. While the application enables users to organise and track daily tasks, weekly goals, and ongoing projects, its primary focus is to showcase how a real-world application can be containerised, automated, and deployed using scalable Azure infrastructure.
+
+The application is containerised using Docker and deployed on Azure using Infrastructure as Code (Terraform) and CI/CD pipelines with GitHub Actions. It runs on Azure Container Apps, with Azure Front Door providing secure, scalable access via HTTPS and custom domain routing.
 
 Live at: [tm.kbakar.site](https://tm.kbakar.site)
-
 ![App demo](images/site_test.gif)
-
-## Architecture
+## Architecture Diagram
 
 ![Architecture diagram](images/architectural_diagram.png)
 
@@ -76,7 +76,6 @@ taskflow-azure/
 
 ### Terraform destroy with manual trigger
 ![terraform-destroy](images/terraform_destroy.png)
-
 ## Security
 
 Trivy scans the Docker image for vulnerabilities on every push and uploads results as a downloadable artefact. Checkov scans Terraform for security misconfigurations on every PR, the 8 findings are acknowledged as Basic SKU limitations and are not applicable for this project. tflint checks Terraform code quality and Azure-specific rules. Managed Identity is used for ACR authentication so no passwords or secrets are stored in code. HTTPS is enforced by default via Front Door with an automatically provisioned managed certificate.
