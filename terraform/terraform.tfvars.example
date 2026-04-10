@@ -10,6 +10,8 @@ app_name       = ""
 env_name       = ""
 container_name = ""
 image_tag      = ""
+int_cpu        = ""
+int_memory     = ""
 
 
 ### Front Door ###
