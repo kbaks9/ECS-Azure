@@ -38,9 +38,6 @@ variable "identity_id" {
   type        = string
 }
 
-cpu    = 0.25
-memory = "0.5Gi"
-
 variable "int_cpu" {
   description = "Allocated CPU"
   type        = string
