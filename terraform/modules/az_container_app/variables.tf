@@ -54,10 +54,6 @@ variable "tags" {
 
 # Testing network
 variable "subnet_id" {
-<<<<<<< Updated upstream
   description = "Subnet ID for the Container App Environment"
-=======
-  description = "ID of the subnet for the Container App Environment"
->>>>>>> Stashed changes
   type        = string
 }
