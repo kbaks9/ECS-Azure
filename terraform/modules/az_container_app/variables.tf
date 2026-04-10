@@ -54,6 +54,6 @@ variable "tags" {
 
 # Testing network
 variable "subnet_id" {
-  description = "Subnet ID"
+  description = "Subnet ID for the Container App Environment"
   type        = string
 }
