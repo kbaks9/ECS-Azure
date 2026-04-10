@@ -37,3 +37,20 @@ variable "identity_id" {
   description = "Identity ID"
   type        = string
 }
+
+cpu    = 0.25
+memory = "0.5Gi"
+
+variable "int_cpu" {
+  description = "Allocated CPU"
+  type        = string
+}
+
+variable "int_memory" {
+  description = "Allocated memory"
+  type        = string
+}
+
+variable "tags" {
+  type = map(string)
+}

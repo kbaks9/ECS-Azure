@@ -47,3 +47,7 @@ variable "fd_route_name" {
   type        = string
   description = "The front door routing name"
 }
+
+variable "tags" {
+  type = map(string)
+}

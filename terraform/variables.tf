@@ -34,6 +34,16 @@ variable "image_tag" {
   type        = string
 }
 
+variable "int_cpu" {
+  description = "Allocated CPU"
+  type        = string
+}
+
+variable "int_memory" {
+  description = "Allocated memory"
+  type        = string
+}
+
 ### Front Door ###
 variable "custom_name" {
   type        = string
@@ -96,3 +106,6 @@ variable "container_app_subnet_prefix" {
   type        = string
 }
 
+variable "tags" {
+  type = map(string)
+}

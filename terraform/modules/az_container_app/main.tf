@@ -2,6 +2,8 @@ resource "azurerm_container_app_environment" "app_env" {
   name                = var.env_name
   location            = var.location
   resource_group_name = var.resource_group
+
+  tags = var.tags
 }
 
 resource "azurerm_container_app" "app" {
@@ -24,8 +26,8 @@ resource "azurerm_container_app" "app" {
     container {
       name   = var.container_name
       image  = "${var.acr_login_server}/${var.container_name}:${var.image_tag}"
-      cpu    = 0.25
-      memory = "0.5Gi"
+      cpu    = var.int_cpu
+      memory = var.int_memory
     }
   }
 
@@ -37,4 +39,6 @@ resource "azurerm_container_app" "app" {
       percentage      = 100
     }
   }
+
+  tags = var.tags
 }

@@ -1,4 +1,3 @@
-# Stage 1: Build dependencies
 FROM python:3.12-alpine AS build
 WORKDIR /app
 RUN apk add --no-cache build-base libffi-dev musl-dev linux-headers

@@ -17,3 +17,7 @@ variable "scope" {
   description = "The full resource ID of the Azure Container Registry"
   type        = string
 }
+
+variable "tags" {
+  type = map(string)
+}

@@ -1,0 +1,17 @@
+To fix:
+
+1. Architect diagram: identitfiying the scope.
+                    Where is the vnet, use of availability zone, firewalls if there is?
+                    [Other than that, the README.md is great]
+
+2. Dockerfile - remove the commments and the spacing.
+3. Tagging resources
+[It shows:
+    1. Costs money: which project is costing us money?
+                     who owns this registry?
+    2. Ownership & accountability
+    3. Organisation: right now, all I have is 1 container registry
+                     but in the future, could have DEV container registry & production container registry etc.
+                     so the tag shows all the dev resources.]
+4. 
+5. 

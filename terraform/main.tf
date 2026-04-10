@@ -11,6 +11,7 @@ module "network" {
   virtual_network_address_space = var.virtual_network_address_space
   container_app_subnet_name     = var.container_app_subnet_name
   container_app_subnet_prefix   = var.container_app_subnet_prefix
+  tags                          = var.tags
 }
 
 module "az_container_registry" {
@@ -18,6 +19,7 @@ module "az_container_registry" {
   name           = "cntaskmanager"
   resource_group = azurerm_resource_group.resource_group.name
   location       = var.location
+  tags           = var.tags
 }
 
 module "az_container_app" {
@@ -30,6 +32,9 @@ module "az_container_app" {
   acr_login_server = module.az_container_registry.acr_login_server
   image_tag        = var.image_tag
   identity_id      = module.role_assignment.identity_id
+  int_memory       = var.int_memory
+  int_cpu          = var.int_cpu
+  tags             = var.tags
 }
 
 module "role_assignment" {
@@ -38,6 +43,7 @@ module "role_assignment" {
   location            = var.location
   identity_name       = "${var.app_name}-identity"
   scope               = module.az_container_registry.acr_id
+  tags                = var.tags
 }
 
 module "front_door" {
@@ -52,4 +58,5 @@ module "front_door" {
   origin_host_name   = module.az_container_app.fqdn
   custom_name        = var.custom_name
   custom_domain_name = var.custom_domain_name
+  tags               = var.tags
 }

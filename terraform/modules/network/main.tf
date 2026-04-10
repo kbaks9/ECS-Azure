@@ -3,6 +3,7 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.location
   resource_group_name = var.resource_group
   address_space       = [var.virtual_network_address_space]
+  tags                = var.tags
 }
 
 resource "azurerm_subnet" "containerapps_subnet" {

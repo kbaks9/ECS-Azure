@@ -1,10 +1,8 @@
-# Resource Group
 variable "resource_group" {
   type        = string
   description = "Name of the resource group"
 }
 
-# Location
 variable "location" {
   type = string
 }
@@ -27,4 +25,8 @@ variable "container_app_subnet_name" {
 variable "container_app_subnet_prefix" {
   description = "Address prefix for the subnet"
   type        = string
+}
+
+variable "tags" {
+  type = map(string)
 }

@@ -1,17 +1,16 @@
-# Front Door Profile
 resource "azurerm_cdn_frontdoor_profile" "fd_profile" {
   name                = var.profile_name
   resource_group_name = var.resource_group
   sku_name            = var.sku_name
+  tags                = var.tags
 }
 
-# Front Door Endpoint
 resource "azurerm_cdn_frontdoor_endpoint" "fd_endpoint" {
   name                     = var.ep_name
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd_profile.id
+  tags                     = var.tags
 }
 
-# Origin Group
 resource "azurerm_cdn_frontdoor_origin_group" "fd_origin_group" {
   name                     = var.fd_group_name
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd_profile.id
@@ -29,7 +28,6 @@ resource "azurerm_cdn_frontdoor_origin_group" "fd_origin_group" {
   }
 }
 
-# Origin
 resource "azurerm_cdn_frontdoor_origin" "fd_origin" {
   name                           = var.fd_origin_name
   cdn_frontdoor_origin_group_id  = azurerm_cdn_frontdoor_origin_group.fd_origin_group.id
@@ -44,7 +42,6 @@ resource "azurerm_cdn_frontdoor_origin" "fd_origin" {
   weight             = 1000
 }
 
-# Route
 resource "azurerm_cdn_frontdoor_route" "fd_route" {
   name                          = var.fd_route_name
   cdn_frontdoor_endpoint_id     = azurerm_cdn_frontdoor_endpoint.fd_endpoint.id
@@ -60,7 +57,6 @@ resource "azurerm_cdn_frontdoor_route" "fd_route" {
   cdn_frontdoor_custom_domain_ids = [azurerm_cdn_frontdoor_custom_domain.custom_domain.id]
 }
 
-# Custom Domain
 resource "azurerm_cdn_frontdoor_custom_domain" "custom_domain" {
   name                     = var.custom_name
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd_profile.id
