@@ -12,6 +12,9 @@ resource "azurerm_subnet" "containerapps_subnet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.container_app_subnet_prefix]
 
+  /*
+  Remove multicomment to connect Container Env App to VNet
+  Requires an upgrade to premium front door (I'm using free tier)
   delegation {
     name = "container-apps-delegation"
     service_delegation {
@@ -20,5 +23,5 @@ resource "azurerm_subnet" "containerapps_subnet" {
         "Microsoft.Network/virtualNetworks/subnets/join/action"
       ]
     }
-  }
+  }*/
 }

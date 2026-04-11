@@ -3,10 +3,11 @@ resource "azurerm_container_app_environment" "app_env" {
   location            = var.location
   resource_group_name = var.resource_group
 
-  # Testing network
-
+  /* Remove multicomment to connect Container Env App to VNet
+  
   infrastructure_subnet_id       = var.subnet_id
   internal_load_balancer_enabled = true
+  */
 
   tags = var.tags
 }
