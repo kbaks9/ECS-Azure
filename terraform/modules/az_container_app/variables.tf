@@ -51,3 +51,9 @@ variable "int_memory" {
 variable "tags" {
   type = map(string)
 }
+
+# Testing network
+variable "subnet_id" {
+  description = "Subnet ID for the Container App Environment"
+  type        = string
+}

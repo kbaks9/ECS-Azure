@@ -108,4 +108,10 @@ variable "container_app_subnet_prefix" {
 
 variable "tags" {
   type = map(string)
+
+  default = {
+    Environment = "Dev"
+    Owner       = "Kamaal B"
+    Project     = "taskflow-azure"
+  }
 }

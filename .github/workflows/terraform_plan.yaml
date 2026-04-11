@@ -43,6 +43,12 @@ jobs:
               "subscriptionId": "${{ secrets.AZURE_SUBSCRIPTION_ID }}",
               "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
             }
+            
+      - name: Create Terraform state storage
+        run: |
+          az group create --name rg-terraform-state --location uksouth || true
+          az storage account create --name sataskmanagertfstate --resource-group rg-terraform-state --location uksouth --sku Standard_LRS || true
+          az storage container create --name tfstate --account-name sataskmanagertfstate || true
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -59,7 +65,7 @@ jobs:
           env_name                      = "${{ secrets.TF_ENV_NAME }}"
           container_name                = "${{ secrets.TF_CONTAINER_NAME }}"
           image_tag                     = "${{ secrets.TF_IMAGE_TAG }}"
-          int_cpu                       = "${{ secrets.TF_INT_CPU }}" 
+          int_cpu                       = "${{ secrets.TF_VAR_CPU }}"
           int_memory                    = "${{ secrets.TF_INT_MEMORY }}"
           profile_name                  = "${{ secrets.TF_PROFILE_NAME }}"
           sku_name                      = "${{ secrets.TF_SKU_NAME }}"
