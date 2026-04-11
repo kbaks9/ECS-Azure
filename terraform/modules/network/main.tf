@@ -11,4 +11,14 @@ resource "azurerm_subnet" "containerapps_subnet" {
   resource_group_name  = var.resource_group
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.container_app_subnet_prefix]
+
+  delegation {
+    name = "container-apps-delegation"
+    service_delegation {
+      name = "Microsoft.App/environments"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action"
+      ]
+    }
+  }
 }
