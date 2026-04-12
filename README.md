@@ -8,7 +8,7 @@ Live at: [tm.kbakar.site](https://tm.kbakar.site)
 ![App demo](images/site_test.gif)
 ## Architecture Diagram
 
-![Architecture diagram](images/architectural_diagram.png)
+![Architecture diagram](images/architectural_diagram_updated.png)
 
 The user visits `tm.kbakar.site`, which resolves via a Namecheap CNAME record to Azure Front Door. Front Door handles HTTPS termination with a managed certificate and forwards traffic to the Container App. The Container App pulls its Docker image from Azure Container Registry using a Managed Identity with the AcrPull role, so no credentials are stored anywhere. Terraform state is stored in a separate Azure Storage Account in `rg-terraform-state` to prevent accidental deletion.
 
@@ -86,11 +86,11 @@ All resources are in `rg-taskmanager` (UK South) except the Terraform state back
 
 | Resource | Type | Purpose |
 |---|---|---|
-| `cntaskmanager` | Container Registry | Stores Docker images |
-| `taskmanageracr` | Container App | Runs the Flask application |
+| `crtaskmanager` | Container Registry | Stores Docker images |
+| `taskmanager-app` | Container App | Runs the Flask application |
 | `tm-env` | Container Apps Environment | Hosts the Container App |
 | `fd-profile` | Front Door | HTTPS, custom domain, routing |
-| `taskmanageracr-identity` | Managed Identity | AcrPull access to Container Registry |
+| `taskmanager-app-identity` | Managed Identity | AcrPull access to Container Registry |
 | `tm-vnet` | Virtual Network | Reserved for future private networking |
 | `sataskmanagertfstate` | Storage Account | Terraform state (`rg-terraform-state`) |
 
@@ -154,10 +154,13 @@ The Terraform state storage in `rg-terraform-state` is managed separately and wi
 | `AZURE_TENANT_ID` | Azure tenant ID |
 | `TF_RESOURCE_GROUP` | Resource group name |
 | `TF_LOCATION` | Azure region |
+| `TF_CR_NAME` | Azure Container Registry name |
 | `TF_APP_NAME` | Container App name |
 | `TF_ENV_NAME` | Container Apps Environment name |
 | `TF_CONTAINER_NAME` | Container name |
 | `TF_IMAGE_TAG` | Docker image tag |
+| `TF_VAR_CPU` | CPU allocation name |
+| `TF_INT_MEMORY` | Memory allocation name |
 | `TF_PROFILE_NAME` | Front Door profile name |
 | `TF_SKU_NAME` | Front Door SKU |
 | `TF_EP_NAME` | Front Door endpoint name |
