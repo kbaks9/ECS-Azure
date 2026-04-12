@@ -1,5 +1,5 @@
 # Azure container registry name
-variable "name" {
+variable "cr_name" {
   type = string
 }
 

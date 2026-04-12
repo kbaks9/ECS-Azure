@@ -61,6 +61,7 @@ jobs:
           cat > terraform.tfvars <<EOF2
           resource_group                = "${{ secrets.TF_RESOURCE_GROUP }}"
           location                      = "${{ secrets.TF_LOCATION }}"
+          cr_name                       = "${{ secrets.TF_CR_NAME }}"
           app_name                      = "${{ secrets.TF_APP_NAME }}"
           env_name                      = "${{ secrets.TF_ENV_NAME }}"
           container_name                = "${{ secrets.TF_CONTAINER_NAME }}"

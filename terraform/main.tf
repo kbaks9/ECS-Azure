@@ -16,7 +16,7 @@ module "network" {
 
 module "az_container_registry" {
   source         = "./modules/az_container_registry"
-  name           = "cntaskmanager"
+  cr_name        = var.cr_name
   resource_group = azurerm_resource_group.resource_group.name
   location       = var.location
   tags           = var.tags

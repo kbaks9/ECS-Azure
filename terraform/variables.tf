@@ -14,6 +14,12 @@ variable "location" {
 ###
 
 # Container
+
+variable "cr_name" {
+  description = "Name of the Azure Container Registry"
+  type        = string
+}
+
 variable "app_name" {
   description = "Name of the Azure Container App"
   type        = string
