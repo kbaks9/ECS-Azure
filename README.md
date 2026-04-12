@@ -98,7 +98,7 @@ All resources are in `rg-taskmanager` (UK South) except the Terraform state back
 ![Azure resource group](images/rg-taskmanager.png)
 
 ### Container App overview
-![Azure container app](images/taskmanager_acr.png)
+![Azure container app](images/cr_taskmanager.png)
 
 ## Run Locally
 
