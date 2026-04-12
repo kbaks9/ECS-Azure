@@ -6,6 +6,7 @@ location       = ""
 
 
 ### Container App ###
+cr_name        = ""
 app_name       = ""
 env_name       = ""
 container_name = ""
