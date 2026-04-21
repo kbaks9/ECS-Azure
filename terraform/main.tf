@@ -28,8 +28,8 @@ module "az_container_app" {
   env_name       = var.env_name
   resource_group = azurerm_resource_group.resource_group.name
   location       = var.location
-  /* Remove multicomment to connect Container Env App to VNet
-  subnet_id        = module.network.subnet_id */
+  /* Remove multicomment to connect Container Env App to VNet */
+  subnet_id        = module.network.subnet_id
   container_name   = var.container_name
   acr_login_server = module.az_container_registry.acr_login_server
   image_tag        = var.image_tag

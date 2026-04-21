@@ -52,8 +52,8 @@ variable "tags" {
   type = map(string)
 }
 
-/* Remove multicomment to connect Container Env App to VNet
+/* Remove multicomment to connect Container Env App to VNet*/
 variable "subnet_id" {
   description = "Subnet ID for the Container App Environment"
   type        = string
-*/
+}

@@ -3,12 +3,14 @@ resource "azurerm_container_app_environment" "app_env" {
   location            = var.location
   resource_group_name = var.resource_group
 
-  /* Remove multicomment to connect Container Env App to VNet
-  
+  /* Remove multicomment to connect Container Env App to VNet */
   infrastructure_subnet_id       = var.subnet_id
   internal_load_balancer_enabled = true
-  */
 
+  workload_profile {
+    name                  = "wp"
+    workload_profile_type = "D4"
+  }
   tags = var.tags
 }
 
@@ -45,6 +47,5 @@ resource "azurerm_container_app" "app" {
       percentage      = 100
     }
   }
-
   tags = var.tags
 }
